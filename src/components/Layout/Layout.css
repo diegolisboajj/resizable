@@ -1,0 +1,29 @@
+.Layout {
+    padding: 5px;
+    width: 70%;
+    border: 1px solid red;
+}
+
+.Layout__title {
+    padding: 0;
+    margin: 0;
+}
+
+.Layout__containers {
+    display: flex;
+}
+
+.Layout__container{
+    width: 200px;
+    height: 200px;
+    border: 1px solid blue;
+}
+
+.Layout__add-row {
+    bottom: 10px;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    height: 40px;
+    width: 50%;
+}

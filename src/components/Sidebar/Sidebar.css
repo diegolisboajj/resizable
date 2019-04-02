@@ -1,0 +1,11 @@
+.Sidebar{
+    padding: 5px;
+    margin-right: 10px;
+    width: 30%;
+    border: 1px solid black;
+}
+
+.Sidebar__title{
+    margin: 0;
+    padding: 0;
+}

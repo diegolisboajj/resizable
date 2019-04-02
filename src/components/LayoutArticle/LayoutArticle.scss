@@ -1,0 +1,21 @@
+.LayoutArticle {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  height: 100px;
+  background: transparent;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.35);
+
+  &__title {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__resize{
+    transition: 0.3s;
+    color: transparent;
+    cursor: col-resize;
+    width: 5px;
+    background-color: grey;
+  }
+}
