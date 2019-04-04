@@ -1,36 +1,36 @@
 import update from 'immutability-helper'
 
 import {
-  ADD_NEW_ROW,
-  ADD_TO_EXISTING_ROW,
-  ADD_TO_LAYOUT,
-  CHANGE_COL,
-  DELETE_ROW, MOVE_ARTICLE,
-  REMOVE_FROM_LAYOUT, UPDATE_SIZE
+  ADD_NEW_ROW_TO_LAYOUT,
+  ADD_ARTICLE_TO_EXISTING_ROW,
+  ADD_ARTICLE_TO_LAYOUT,
+  CHANGE_ARTICLE_COLUMN_IN_ROW,
+  DELETE_ROW_FROM_LAYOUT, REORDER_ARTICLE_IN_ROW,
+  REMOVE_ARTICLE_FROM_LAYOUT, UPDATE_ARTICLE_SIZE_IN_LAYOUT
 } from '../../actions'
 import { combineReducers } from 'redux'
 import layoutArticle from './layoutArticle'
 
 const byIdsInLayout = (state = {}, action) => {
   switch (action.type) {
-    case ADD_TO_LAYOUT:
+    case ADD_ARTICLE_TO_LAYOUT:
       return {
         ...state,
         [action.id]: layoutArticle(state[action.id], action)
       }
-    case REMOVE_FROM_LAYOUT:
+    case REMOVE_ARTICLE_FROM_LAYOUT:
       const newState = Object.assign({}, state)
       delete newState[action.id]
       return newState
-    case ADD_TO_EXISTING_ROW:
+    case ADD_ARTICLE_TO_EXISTING_ROW:
       return Object.assign({}, state, {
         [action.id]: layoutArticle(state[action.id], action)
       })
-    case CHANGE_COL:
+    case CHANGE_ARTICLE_COLUMN_IN_ROW:
       return Object.assign({}, state, {
         [action.id]: layoutArticle(state[action.id], action)
       })
-    case UPDATE_SIZE:
+    case UPDATE_ARTICLE_SIZE_IN_LAYOUT:
       return Object.assign({}, state, {
         [action.id]: layoutArticle(state[action.id], action)
       })
@@ -41,9 +41,9 @@ const byIdsInLayout = (state = {}, action) => {
 
 const allIdsInLayout = (state = [], action) => {
   switch (action.type) {
-    case ADD_TO_LAYOUT:
+    case ADD_ARTICLE_TO_LAYOUT:
       return [...state, action.id]
-    case REMOVE_FROM_LAYOUT:
+    case REMOVE_ARTICLE_FROM_LAYOUT:
       return state.filter(id => id !== action.id)
     default:
       return state
@@ -52,7 +52,7 @@ const allIdsInLayout = (state = [], action) => {
 
 const rowsById = (state = {}, action) => {
   switch (action.type) {
-    case ADD_TO_LAYOUT:
+    case ADD_ARTICLE_TO_LAYOUT:
       return {
         ...state,
         [action.row]: {
@@ -60,7 +60,7 @@ const rowsById = (state = {}, action) => {
           articlesInRow: [...state[action.row].articlesInRow, action.id]
         }
       }
-    case ADD_NEW_ROW:
+    case ADD_NEW_ROW_TO_LAYOUT:
       return {
         ...state,
         [action.id]: {
@@ -68,11 +68,11 @@ const rowsById = (state = {}, action) => {
           articlesInRow: []
         }
       }
-    case DELETE_ROW:
+    case DELETE_ROW_FROM_LAYOUT:
       const newState = Object.assign({}, state)
       delete newState[action.id]
       return newState
-    case ADD_TO_EXISTING_ROW:
+    case ADD_ARTICLE_TO_EXISTING_ROW:
       return {
         ...state,
         [action.rowId]: {
@@ -80,7 +80,7 @@ const rowsById = (state = {}, action) => {
           articlesInRow: [...state[action.rowId].articlesInRow, action.id]
         }
       }
-    case MOVE_ARTICLE:
+    case REORDER_ARTICLE_IN_ROW:
       return {
         ...state,
         [action.rowId]: {
@@ -99,9 +99,9 @@ const rowsById = (state = {}, action) => {
 
 const rowsInLayout = (state = [], action) => {
   switch (action.type) {
-    case ADD_NEW_ROW:
+    case ADD_NEW_ROW_TO_LAYOUT:
       return [...state, action.id]
-    case DELETE_ROW:
+    case DELETE_ROW_FROM_LAYOUT:
       return state.filter(id => id !== action.id)
     default:
       return state
@@ -120,5 +120,6 @@ export default layoutArticles
 //Selectors
 export const getIdsInLayout = state => state.allIdsInLayout
 export const getLayoutParameters = state => state.allIdsInLayout.map(id => state.byIdsInLayout[id])
-export const getAllRows = state => state.rowsInLayout
-export const getRowsByIds = state => state.rowsInLayout.map(id => state.rowsById[id])
+export const getLayoutParameterById = (paramId, state) => state.byIdsInLayout[paramId]
+export const getAllRows = state => state.rowsInLayout.map(id => state.rowsById[id])
+export const getRowById = (rowId, state) => state.rowsById[rowId]

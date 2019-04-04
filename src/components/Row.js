@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import flow from 'lodash/flow'
 
 import LayoutArticle from './LayoutArticle'
-import { addToLayout, changeCol, removeFromLayout } from '../actions'
+import { addArticleToLayout, changeArticleColumnInRow, removeArticleFromLayout } from '../actions'
 import { getAllArticles, getIdsInLayout } from '../reducers'
 
 import '../grid.scss'
@@ -40,18 +40,18 @@ export default flow(
       drop(props, monitor) {
         if (props.layoutArticles.filter(article => article.id === monitor.getItem().id).length === 0) {
           if (props.parameters.length !== 0) {
-            props.parameters.map(article => props.changeCol({
+            props.parameters.map(article => props.changeArticleColumnInRow({
               id: article.id,
               col: `${12 / (props.parameters.length + 1)}`
             }))
-            props.addToLayout({
+            props.addArticleToLayout({
               id: monitor.getItem().id,
               col: `${12 / (props.parameters.length + 1)}`,
               row: props.row,
               size: '500px'
             })
           } else {
-            props.addToLayout({
+            props.addArticleToLayout({
               id: monitor.getItem().id,
               col: '12',
               row: props.row,
@@ -74,9 +74,9 @@ export default flow(
       layoutArticles: getAllArticles(state).filter(article => getIdsInLayout(state).indexOf(article.id) !== -1)
     }),
     {
-      addToLayout,
-      removeFromLayout,
-      changeCol
+      addArticleToLayout,
+      removeArticleFromLayout,
+      changeArticleColumnInRow
     }
   )
 )(Row)

@@ -6,7 +6,7 @@ import flow from 'lodash/flow'
 import '../../grid.scss'
 import './LayoutArticle.scss'
 import BEM from '../../helpers/BEM'
-import { moveArticle, updateSize } from '../../actions'
+import { reorderArticleInRow, updateArticleSizeInLayout } from '../../actions'
 
 const b = BEM('LayoutArticle')
 
@@ -45,7 +45,7 @@ class LayoutArticle extends Component {
   }
 
   handleMouseMove = e => {
-    const { parameters, updateSize } = this.props
+    const { parameters, updateArticleSizeInLayout } = this.props
     e.preventDefault()
     if (!this.state.initX) {
       this.setState(state => ({
@@ -56,7 +56,7 @@ class LayoutArticle extends Component {
     } else {
       const delta = e.pageX - this.state.initX
       const maxWidth = `${this.state.initMaxWidth + delta}px`
-      updateSize({ id: parameters.id, size: maxWidth })
+      updateArticleSizeInLayout({ id: parameters.id, size: maxWidth })
     }
   }
 
@@ -114,7 +114,7 @@ export default flow(
         if (dragRow !== overRow) return
 
         if (index !== undefined && overIndex !== undefined)
-          props.moveArticle(props.rowId, index, overIndex, draggedId, overId)
+          props.reorderArticleInRow(props.rowId, index, overIndex, draggedId, overId)
 
         monitor.getItem().index = overIndex
       }
@@ -126,8 +126,8 @@ export default flow(
   connect(
     null,
     {
-      updateSize,
-      moveArticle
+      updateArticleSizeInLayout,
+      reorderArticleInRow
     }
   )
 )(LayoutArticle)
