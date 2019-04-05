@@ -8,7 +8,6 @@ export const ADD_NEW_ROW_TO_LAYOUT = 'ADD_NEW_ROW_TO_LAYOUT'
 export const ADD_ARTICLE_TO_EXISTING_ROW = 'ADD_ARTICLE_TO_EXISTING_ROW'
 export const DELETE_ROW_FROM_LAYOUT = 'DELETE_ROW_FROM_LAYOUT'
 export const CHANGE_ARTICLE_COLUMN_IN_ROW = 'CHANGE_ARTICLE_COLUMN_IN_ROW'
-export const UPDATE_ARTICLE_SIZE_IN_LAYOUT = 'UPDATE_ARTICLE_SIZE_IN_LAYOUT'
 export const REORDER_ARTICLE_IN_ROW = 'REORDER_ARTICLE_IN_ROW'
 
 export const addArticle = text => ({
@@ -22,18 +21,18 @@ export const removeArticle = id => ({
   id
 })
 
-export const addArticleToLayout = ({ id, col, row, size }) => ({
+export const addArticleToLayout = ({ id, col, row }) => ({
   type: ADD_ARTICLE_TO_LAYOUT,
   id,
   col,
-  row,
-  size
+  row
 })
 
 
-export const removeArticleFromLayout = id => ({
+export const removeArticleFromLayout = (id, rowId = undefined) => ({
   type: REMOVE_ARTICLE_FROM_LAYOUT,
-  id
+  id,
+  rowId
 })
 
 export const addNewRowToLayout = () => ({
@@ -58,11 +57,6 @@ export const changeArticleColumnInRow = ({ id, col }) => ({
   col
 })
 
-export const updateArticleSizeInLayout = ({ id, size }) => ({
-  type: UPDATE_ARTICLE_SIZE_IN_LAYOUT,
-  id,
-  size
-})
 
 export const reorderArticleInRow = (rowId, index, overIndex, draggedId, overId) => ({
   type: REORDER_ARTICLE_IN_ROW,

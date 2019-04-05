@@ -1,4 +1,4 @@
-import { ADD_ARTICLE_TO_EXISTING_ROW, ADD_ARTICLE_TO_LAYOUT, CHANGE_ARTICLE_COLUMN_IN_ROW, UPDATE_ARTICLE_SIZE_IN_LAYOUT } from '../../actions'
+import { ADD_ARTICLE_TO_EXISTING_ROW, ADD_ARTICLE_TO_LAYOUT, CHANGE_ARTICLE_COLUMN_IN_ROW } from '../../actions'
 
 const layoutArticle = (state, action) => {
   switch (action.type) {
@@ -6,8 +6,7 @@ const layoutArticle = (state, action) => {
       return {
         id: action.id,
         row: action.row,
-        col: action.col,
-        size: action.size
+        col: action.col
       }
     case ADD_ARTICLE_TO_EXISTING_ROW:
       return {
@@ -18,11 +17,6 @@ const layoutArticle = (state, action) => {
       return {
         ...state,
         col: action.col
-      }
-    case UPDATE_ARTICLE_SIZE_IN_LAYOUT:
-      return {
-        ...state,
-        size: action.size
       }
     default:
       return state

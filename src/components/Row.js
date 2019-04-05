@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { DropTarget } from 'react-dnd'
 import { connect } from 'react-redux'
 import flow from 'lodash/flow'
@@ -9,29 +9,40 @@ import { getAllArticles, getIdsInLayout } from '../reducers'
 
 import '../grid.scss'
 
-const Row = ({ row, articles, parameters, connectDropTarget }) => connectDropTarget(
-  <section className='grid' style={{ border: '1px solid grey', marginBottom: '5px' }}>
-    {articles.map(
-      (article, i) => articles[articles.length - 1] === article ?
-        <LayoutArticle
-          key={article.id}
-          index={i}
-          rowId={row}
-          layoutArticle={article}
-          parameters={parameters.filter(param => param.id === article.id)[0]}
-          resize={false}
-        /> :
-        <LayoutArticle
-          key={article.id}
-          index={i}
-          rowId={row}
-          layoutArticle={article}
-          parameters={parameters.filter(param => param.id === article.id)[0]}
-          resize={true}
-        />
-    )}
-  </section>
-)
+const Row = ({ row, articles, parameters, connectDropTarget }) => {
+  const [dimension, setDimension] = useState(null)
+  let container
+
+  useEffect(() => {
+    setDimension(container.offsetWidth)
+  }, [])
+
+  return connectDropTarget(
+    <section className='grid' style={{ border: '1px solid grey', marginBottom: '5px' }} ref={el => container = el}>
+      {articles.map(
+        (article, i) => articles[articles.length - 1] === article ?
+          <LayoutArticle
+            key={article.id}
+            index={i}
+            rowId={row}
+            containerWidth={dimension}
+            layoutArticle={article}
+            parameters={parameters.filter(param => param.id === article.id)[0]}
+            resize={false}
+          /> :
+          <LayoutArticle
+            key={article.id}
+            index={i}
+            rowId={row}
+            containerWidth={dimension}
+            layoutArticle={article}
+            parameters={parameters.filter(param => param.id === article.id)[0]}
+            resize={true}
+          />
+      )}
+    </section>
+  )
+}
 
 export default flow(
   DropTarget(
@@ -47,15 +58,13 @@ export default flow(
             props.addArticleToLayout({
               id: monitor.getItem().id,
               col: `${12 / (props.parameters.length + 1)}`,
-              row: props.row,
-              size: '500px'
+              row: props.row
             })
           } else {
             props.addArticleToLayout({
               id: monitor.getItem().id,
               col: '12',
-              row: props.row,
-              size: '500px'
+              row: props.row
             })
           }
         }

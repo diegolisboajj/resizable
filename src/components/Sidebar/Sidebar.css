@@ -1,7 +1,9 @@
 .Sidebar{
+    overflow: auto;
+    max-height: 750px;
     padding: 5px;
     margin-right: 10px;
-    width: 30%;
+    width: 25%;
     border: 1px solid black;
 }
 

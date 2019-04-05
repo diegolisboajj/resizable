@@ -39,8 +39,7 @@ export default flow(
           props.addArticleToLayout({
               id: monitor.getItem().id,
               col: '12',
-              row: props.addNewRowToLayout().id,
-              size: '500px'
+              row: props.addNewRowToLayout().id
             }
           )
       }

@@ -31,5 +31,25 @@ export const sidebar = {
     id: 'element6',
     text:
       'element 6'
+  },
+  'element7': {
+    id: 'element7',
+    text:
+      'element 7'
+  },
+  'element8': {
+    id: 'element8',
+    text:
+      'element 8'
+  },
+  'element9': {
+    id: 'element9',
+    text:
+      'element 9'
+  },
+  'element10': {
+    id: 'element10',
+    text:
+      'element 10'
   }
 }

@@ -2,23 +2,22 @@ import React from 'react'
 import { DragSource } from 'react-dnd'
 
 import './Article.css'
+import BEM from '../../helpers/BEM'
 
-const Article = ({ article, connectDragSource }) => {
-  return connectDragSource(
-    <div className={'Article'}>
-      <h3 className={'Article__title'}>{article.text}</h3>
+const b = BEM('Article')
+
+const Article = ({ article, connectDragSource }) =>
+  connectDragSource(
+    <div className={b()}>
+      <h3 className={b('title')}>{article.text}</h3>
     </div>
   )
-}
 
 export default DragSource(
   'Article',
   {
-    beginDrag(props) {
-      return props.article
-    },
-
-    endDrag(props, monitor) {
+    beginDrag: (props) => props.article,
+    endDrag: (props, monitor) => {
       if (monitor.getDropResult() === null) return
     }
   },
