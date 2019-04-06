@@ -1,5 +1,5 @@
 import { v4 } from 'node-uuid'
-//TODO change actions names:
+
 export const ADD_ARTICLE = 'ADD_ARTICLE'
 export const REMOVE_ARTICLE = 'REMOVE_ARTICLE'
 export const ADD_ARTICLE_TO_LAYOUT = 'ADD_ARTICLE_TO_LAYOUT'
@@ -11,6 +11,7 @@ export const CHANGE_ARTICLE_COLUMN_IN_ROW = 'CHANGE_ARTICLE_COLUMN_IN_ROW'
 export const REORDER_ARTICLE_IN_ROW = 'REORDER_ARTICLE_IN_ROW'
 export const REMOVE_ARTICLE_FROM_ROW = 'REMOVE_ARTICLE_FROM_ROW'
 
+//Article actions
 export const addArticle = text => ({
   type: ADD_ARTICLE,
   id: v4(),
@@ -22,13 +23,13 @@ export const removeArticle = id => ({
   id
 })
 
+//Layout actions
 export const addArticleToLayout = ({ id, col, row }) => ({
   type: ADD_ARTICLE_TO_LAYOUT,
   id,
   col,
   row
 })
-
 
 export const removeArticleFromLayout = (id, rowId = undefined) => ({
   type: REMOVE_ARTICLE_FROM_LAYOUT,
@@ -52,13 +53,6 @@ export const deleteRowFromLayout = id => ({
   id
 })
 
-export const changeArticleColumnInRow = ({ id, col }) => ({
-  type: CHANGE_ARTICLE_COLUMN_IN_ROW,
-  id,
-  col
-})
-
-
 export const reorderArticleInRow = (rowId, index, overIndex, draggedId, overId) => ({
   type: REORDER_ARTICLE_IN_ROW,
   rowId: rowId,
@@ -72,4 +66,10 @@ export const removeArticleFromRow = (rowId, articleId) => ({
   type: REMOVE_ARTICLE_FROM_ROW,
   rowId: rowId,
   articleId: articleId
+})
+
+export const changeArticleColumnInRow = ({ id, col }) => ({
+  type: CHANGE_ARTICLE_COLUMN_IN_ROW,
+  id,
+  col
 })

@@ -112,9 +112,9 @@ class LayoutArticle extends Component {
       const delta = e.pageX - this.state.initX
       const maxWidth = this.state.initialMaxWidth + delta
       if (this.props.containerWidth / 12 * 1 < maxWidth < this.props.containerWidth / 12 * 11)
-        this.props.articlesInRow.map(articleId => {
+        this.props.articlesInRow.map(articleId =>
           this.setArticlesCells(Math.round(maxWidth / (this.props.containerWidth / 12)), articleId)
-        })
+        )
       this.setState(state => ({
         ...state,
         size: maxWidth

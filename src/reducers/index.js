@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
 import articles, * as fromArticles from './articles'
-import layoutArticles, * as fromLayoutArticles from './layoutArticles'
+import layoutArticles, * as fromLayoutArticles from './layout'
 
 export default combineReducers({
   articles: articles,
-  layoutArticles: layoutArticles
+  layout: layoutArticles
 })
 
 //Articles selector
@@ -13,17 +13,17 @@ export const getAllArticles = state =>
   fromArticles.getAllArticles(state.articles)
 
 export const getIdsInLayout = state =>
-  fromLayoutArticles.getIdsInLayout(state.layoutArticles)
+  fromLayoutArticles.getIdsInLayout(state.layout)
 
 //Layout selectors
 export const getLayoutParameters = state =>
-  fromLayoutArticles.getLayoutParameters(state.layoutArticles)
+  fromLayoutArticles.getLayoutParameters(state.layout)
 
 export const getLayoutParameterById = (paramId, state) =>
-  fromLayoutArticles.getLayoutParameterById(paramId, state.layoutArticles)
+  fromLayoutArticles.getLayoutParameterById(paramId, state.layout)
 
 export const getAllRows = state =>
-  fromLayoutArticles.getAllRows(state.layoutArticles)
+  fromLayoutArticles.getAllRows(state.layout)
 
 export const getRowById = (rowId, state) =>
-  fromLayoutArticles.getRowById(rowId, state.layoutArticles)
+  fromLayoutArticles.getRowById(rowId, state.layout)

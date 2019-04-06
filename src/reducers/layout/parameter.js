@@ -1,6 +1,10 @@
-import { ADD_ARTICLE_TO_EXISTING_ROW, ADD_ARTICLE_TO_LAYOUT, CHANGE_ARTICLE_COLUMN_IN_ROW } from '../../actions'
+import {
+  ADD_ARTICLE_TO_EXISTING_ROW,
+  ADD_ARTICLE_TO_LAYOUT,
+  CHANGE_ARTICLE_COLUMN_IN_ROW
+} from '../../actions'
 
-const layoutArticle = (state, action) => {
+const parameter = (state, action) => {
   switch (action.type) {
     case ADD_ARTICLE_TO_LAYOUT:
       return {
@@ -23,4 +27,4 @@ const layoutArticle = (state, action) => {
   }
 }
 
-export default layoutArticle
+export default parameter
