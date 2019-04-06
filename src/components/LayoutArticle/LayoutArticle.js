@@ -5,11 +5,11 @@ import flow from 'lodash/flow'
 
 import isOdd from '../../helpers/isOdd'
 import { changeArticleColumnInRow, reorderArticleInRow } from '../../actions'
+import { getRowById } from '../../reducers'
 
 import '../../grid.scss'
 import './LayoutArticle.scss'
 import BEM from '../../helpers/BEM'
-import { getRowById } from '../../reducers'
 
 const b = BEM('LayoutArticle')
 
@@ -148,7 +148,10 @@ export default flow(
         text: props.layoutArticle.text,
         index: props.index,
         row: props.parameters.row
-      })
+      }),
+      endDrag: (props, monitor) => {
+        return {row: props.rowId}
+      }
     },
     (connect, monitor) => ({
       connectDragSource: connect.dragSource(),

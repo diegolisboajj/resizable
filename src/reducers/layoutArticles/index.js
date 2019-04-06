@@ -6,7 +6,7 @@ import {
   ADD_ARTICLE_TO_LAYOUT,
   CHANGE_ARTICLE_COLUMN_IN_ROW,
   DELETE_ROW_FROM_LAYOUT, REORDER_ARTICLE_IN_ROW,
-  REMOVE_ARTICLE_FROM_LAYOUT
+  REMOVE_ARTICLE_FROM_LAYOUT, REMOVE_ARTICLE_FROM_ROW
 } from '../../actions'
 import { combineReducers } from 'redux'
 import layoutArticle from './layoutArticle'
@@ -76,7 +76,6 @@ const rowsById = (state = {}, action) => {
           articlesInRow: state[action.rowId].articlesInRow.filter(articleId => articleId !== action.id)
         }
       }
-
     case ADD_ARTICLE_TO_EXISTING_ROW:
       return {
         ...state,
@@ -95,6 +94,14 @@ const rowsById = (state = {}, action) => {
               $splice: [[action.index, 1], [action.overIndex, 0, action.draggedId]]
             }
           )
+        }
+      }
+    case REMOVE_ARTICLE_FROM_ROW:
+      return {
+        ...state,
+        [action.rowId]: {
+          ...state[action.rowId],
+          articlesInRow: state[action.rowId].articlesInRow.filter(id => id !== action.articleId)
         }
       }
     default:

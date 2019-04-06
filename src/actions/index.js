@@ -9,6 +9,7 @@ export const ADD_ARTICLE_TO_EXISTING_ROW = 'ADD_ARTICLE_TO_EXISTING_ROW'
 export const DELETE_ROW_FROM_LAYOUT = 'DELETE_ROW_FROM_LAYOUT'
 export const CHANGE_ARTICLE_COLUMN_IN_ROW = 'CHANGE_ARTICLE_COLUMN_IN_ROW'
 export const REORDER_ARTICLE_IN_ROW = 'REORDER_ARTICLE_IN_ROW'
+export const REMOVE_ARTICLE_FROM_ROW = 'REMOVE_ARTICLE_FROM_ROW'
 
 export const addArticle = text => ({
   type: ADD_ARTICLE,
@@ -65,4 +66,10 @@ export const reorderArticleInRow = (rowId, index, overIndex, draggedId, overId) 
   overIndex: overIndex,
   draggedId: draggedId,
   overId: overId
+})
+
+export const removeArticleFromRow = (rowId, articleId) => ({
+  type: REMOVE_ARTICLE_FROM_ROW,
+  rowId: rowId,
+  articleId: articleId
 })

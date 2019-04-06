@@ -4,8 +4,14 @@ import { connect } from 'react-redux'
 import flow from 'lodash/flow'
 
 import LayoutArticle from './LayoutArticle'
-import { addArticleToLayout, changeArticleColumnInRow, removeArticleFromLayout } from '../actions'
-import { getAllArticles, getIdsInLayout } from '../reducers'
+import {
+  addArticleToLayout,
+  changeArticleColumnInRow,
+  removeArticleFromLayout,
+  removeArticleFromRow,
+  addArticleToExistingRow
+} from '../actions'
+import { getAllArticles, getIdsInLayout, getRowById } from '../reducers'
 
 import '../grid.scss'
 
@@ -48,8 +54,11 @@ export default flow(
   DropTarget(
     'Article',
     {
-      drop(props, monitor) {
-        if (props.layoutArticles.filter(article => article.id === monitor.getItem().id).length === 0) {
+      canDrop: (props, monitor) =>
+        props.layoutArticles.filter(article => article.id === monitor.getItem().id).length === 0
+      ,
+      drop: (props, monitor) => {
+        if (props.articlesInRow.indexOf(monitor.getItem().id) === -1) {
           if (props.parameters.length !== 0) {
             props.parameters.map(article => props.changeArticleColumnInRow({
               id: article.id,
@@ -79,13 +88,16 @@ export default flow(
     })
   ),
   connect(
-    state => ({
-      layoutArticles: getAllArticles(state).filter(article => getIdsInLayout(state).indexOf(article.id) !== -1)
+    (state, props) => ({
+      layoutArticles: getAllArticles(state).filter(article => getIdsInLayout(state).indexOf(article.id) !== -1),
+      articlesInRow: getRowById(props.row, state).articlesInRow
     }),
     {
       addArticleToLayout,
       removeArticleFromLayout,
-      changeArticleColumnInRow
+      changeArticleColumnInRow,
+      addArticleToExistingRow,
+      removeArticleFromRow
     }
   )
 )(Row)
