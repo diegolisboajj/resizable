@@ -1,6 +1,5 @@
 # Dynamic grid-layout 
 Drag and drop dynamic layout builder Powered by React and Redux <br>
-### [Live demo](https://bodi44.github.io/resizable-layout/)
 
 ## Installation:
 `git clone https://github.com/bodi44/resizable-layout.git` - clone project   
