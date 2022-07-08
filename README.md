@@ -2,7 +2,7 @@
 Drag and drop dynamic layout builder Powered by React and Redux <br>
 
 ## Installation:
-`git clone https://github.com/bodi44/resizable-layout.git` - clone project   
+`git clone https://github.com/diegolisboajj/resizable.git` - clone project   
 `npm install` - install project dependencies
 ## Running:
 `npm start` - run project <br>
