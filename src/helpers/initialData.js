@@ -1,55 +1,55 @@
 export const sidebar = {
-  'element1': {
-    id: 'element1',
-    text: 'element 1'
+  'elemento1': {
+    id: 'elemento1',
+    text: 'elemento 1'
   },
-  'element2': {
-    id: 'element2',
+  'elemento2': {
+    id: 'elemento2',
     text:
-      'element 2'
+      'elemento 2'
   }
   ,
-  'element3': {
-    id: 'element3',
+  'elemento3': {
+    id: 'elemento3',
     text:
-      'element 3'
+      'elemento 3'
   }
   ,
-  'element4': {
-    id: 'element4',
+  'elemento4': {
+    id: 'elemento4',
     text:
-      'element 4'
+      'elemento 4'
   }
   ,
-  'element5': {
-    id: 'element5',
+  'elemento5': {
+    id: 'elemento5',
     text:
-      'element 5'
+      'elemento 5'
   }
   ,
-  'element6': {
-    id: 'element6',
+  'elemento6': {
+    id: 'elemento6',
     text:
-      'element 6'
+      'elemento 6'
   },
-  'element7': {
-    id: 'element7',
+  'elemento7': {
+    id: 'elemento7',
     text:
-      'element 7'
+      'elemento 7'
   },
-  'element8': {
-    id: 'element8',
+  'elemento8': {
+    id: 'elemento8',
     text:
-      'element 8'
+      'elemento 8'
   },
-  'element9': {
-    id: 'element9',
+  'elemento9': {
+    id: 'elemento9',
     text:
-      'element 9'
+      'elemento 9'
   },
-  'element10': {
-    id: 'element10',
+  'elemento10': {
+    id: 'elemento10',
     text:
-      'element 10'
+      'elemento 10'
   }
 }

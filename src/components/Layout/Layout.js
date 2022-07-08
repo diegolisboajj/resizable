@@ -12,10 +12,13 @@ import '../../grid.scss'
 import BEM from '../../helpers/BEM'
 
 const b = BEM('Layout')
-
+const teste = (rows) => {
+  console.log('tesfs', rows)
+}
 const Layout = ({ connectDropTarget, data, articles, layoutParameters, addNewRowToLayout, rows }) =>
   connectDropTarget(
     <main className={b()}>
+      <button onClick={() => teste(rows)}>Clique aqui</button>
       <h1 className={b('title')}>Layout</h1>
       <main>
         {rows.map(row => (
